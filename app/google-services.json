@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "371164095516",
+    "firebase_url": "https://cloud-a6448.firebaseio.com",
+    "project_id": "cloud-a6448",
+    "storage_bucket": "cloud-a6448.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:371164095516:android:99f3a8cc58871b8590ebd9",
+        "android_client_info": {
+          "package_name": "com.wadektech.eventshub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "371164095516-04cp6crg88jjbpmho0h8qge8amn166o2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wadektech.eventshub",
+            "certificate_hash": "8817345540725fabdcad3bc65f8d78393bf6c5a0"
+          }
+        },
+        {
+          "client_id": "371164095516-r6106844egkk2g0rq3nt5rfabt1g7mbp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBI1xfi3_NGrAhHpW4J9H_mA6IvpU_qcGI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "371164095516-6h5g555b560cdn50umuobcu35svvrur5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
