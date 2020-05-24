@@ -11,7 +11,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <!--Top Headerbar-->
@@ -27,7 +27,8 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:padding="10dp"
-                android:background="@drawable/menu" />
+                android:background="@drawable/menu"
+                tools:ignore="ContentDescription" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -37,20 +38,22 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                tools:ignore="UseCompoundDrawables">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nairobi"
+                    android:text="@string/location"
                     android:textColor="#424242"
                     android:textSize="17sp" />
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginLeft="3dp"
-                    app:srcCompat="@drawable/ic_keyboard_arrow_down" />
+                    android:layout_marginStart="3dp"
+                    app:srcCompat="@drawable/ic_keyboard_arrow_down"
+                    tools:ignore="ContentDescription" />
             </LinearLayout>
 
             <Space
@@ -63,7 +66,8 @@
                 android:layout_height="40dp"
                 android:layout_centerInParent="true"
                 android:padding="6dp"
-                app:srcCompat="@drawable/ic_search" />
+                app:srcCompat="@drawable/ic_search"
+                tools:ignore="ContentDescription,ObsoleteLayoutParam" />
 
         </LinearLayout>
 
@@ -89,7 +93,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:orientation="vertical"
-                android:layout_marginLeft="15dp">
+                android:layout_marginLeft="15dp"
+                tools:ignore="RtlHardcoded">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -101,7 +106,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:alpha="0.8"
-                        android:text="Derrick Wadek"
+                        android:text="@string/username"
                         android:textColor="#59408F"
                         android:textSize="17sp"
                         android:textStyle="bold" />
@@ -113,7 +118,8 @@
                         android:layout_marginStart="10dp"
                         android:padding="3dp"
                         android:background="@drawable/ic_edit"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="10dp"
+                        tools:ignore="ContentDescription" />
 
                 </LinearLayout>
 
@@ -127,7 +133,7 @@
                         android:id="@+id/tv_user_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Android Developer"
+                        android:text="@string/user_title"
                         android:textColor="#424242"
                         android:textSize="14sp" />
 
@@ -137,22 +143,20 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:alpha="0.6"
-                        app:srcCompat="@drawable/circle_dark_grey_fil" />
+                        app:srcCompat="@drawable/circle_dark_grey_fil"
+                        tools:ignore="ContentDescription" />
 
                     <TextView
                         android:id="@+id/tv_display_friends"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="345 friends"
+                        android:text="@string/friends_number"
                         android:textColor="#424242"
                         android:textSize="14sp" />
 
                 </LinearLayout>
-
             </LinearLayout>
-
         </LinearLayout>
-
         <!--Big Text-->
         <LinearLayout
             android:layout_width="match_parent"
@@ -165,7 +169,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hello, "
+                android:text="@string/greeting_banner"
                 android:textColor="#424242"
                 android:textSize="25sp" />
 
@@ -173,12 +177,11 @@
                 android:id="@+id/tv_user"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="WadeQ!"
+                android:text="@string/username_surname"
                 android:textColor="#424242"
                 android:textSize="25sp"
                 android:textStyle="bold" />
         </LinearLayout>
-
         <!--Options-->
         <LinearLayout
             android:layout_width="match_parent"
@@ -186,12 +189,13 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            android:baselineAligned="false">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
                 android:layout_weight="2"
                 android:orientation="vertical">
 
@@ -200,14 +204,16 @@
                     android:clickable="true"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="10dp"
+                    android:focusable="true">
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="100dp"
                         android:background="@drawable/my_gradient_drawable2"
                         android:minHeight="100dp"
-                        android:padding="10dp">
+                        android:padding="10dp"
+                        tools:ignore="UselessParent">
 
                         <ImageView
                             android:layout_width="30dp"
@@ -218,7 +224,8 @@
                             android:padding="3dp"
                             app:srcCompat="@drawable/briefcase"
                             android:layout_alignParentRight="true"
-                            android:layout_marginRight="3dp" />
+                            android:layout_marginRight="3dp"
+                            tools:ignore="ContentDescription,RtlHardcoded" />
 
                         <TextView
                             android:layout_width="100dp"
@@ -226,11 +233,12 @@
                             android:layout_alignParentBottom="true"
                             android:layout_marginStart="5dp"
                             android:layout_marginBottom="5dp"
-                            android:text="Professional events"
+                            android:text="@string/event_type_banner"
                             android:textColor="@color/white"
                             android:textSize="15sp"
                             android:textStyle="bold"
-                            android:layout_marginLeft="5dp" />
+                            android:layout_marginLeft="5dp"
+                            tools:ignore="RtlHardcoded" />
 
                     </RelativeLayout>
                 </LinearLayout>
@@ -240,14 +248,16 @@
                     android:clickable="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="10dp"
+                    android:focusable="true">
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="100dp"
                         android:background="@drawable/my_gradient_drawable3"
                         android:minHeight="100dp"
-                        android:padding="10dp">
+                        android:padding="10dp"
+                        tools:ignore="UselessParent">
 
                         <ImageView
                             android:layout_width="30dp"
@@ -258,7 +268,8 @@
                             android:padding="3dp"
                             app:srcCompat="@drawable/masks"
                             android:layout_alignParentRight="true"
-                            android:layout_marginRight="3dp" />
+                            android:layout_marginRight="3dp"
+                            tools:ignore="ContentDescription,RtlHardcoded" />
 
                         <TextView
                             android:layout_width="100dp"
@@ -270,7 +281,8 @@
                             android:textColor="@color/white"
                             android:textSize="15sp"
                             android:textStyle="bold"
-                            android:layout_marginLeft="5dp" />
+                            android:layout_marginLeft="5dp"
+                            tools:ignore="RtlHardcoded" />
 
                     </RelativeLayout>
                 </LinearLayout>
@@ -280,7 +292,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
                 android:layout_weight="2"
                 android:orientation="vertical">
 
@@ -289,14 +301,16 @@
                     android:clickable="true"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="10dp"
+                    android:focusable="true">
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="100dp"
                         android:background="@drawable/my_gradient_drawable"
                         android:minHeight="100dp"
-                        android:padding="10dp">
+                        android:padding="10dp"
+                        tools:ignore="UselessParent">
 
                         <ImageView
                             android:layout_width="30dp"
@@ -307,7 +321,8 @@
                             android:padding="3dp"
                             app:srcCompat="@drawable/megaphone"
                             android:layout_alignParentRight="true"
-                            android:layout_marginRight="3dp" />
+                            android:layout_marginRight="3dp"
+                            tools:ignore="ContentDescription,RtlHardcoded" />
 
                         <TextView
                             android:layout_width="100dp"
@@ -315,11 +330,12 @@
                             android:layout_alignParentBottom="true"
                             android:layout_marginStart="5dp"
                             android:layout_marginBottom="5dp"
-                            android:text="Social events"
+                            android:text="@string/social_events"
                             android:textColor="@color/white"
                             android:textSize="15sp"
                             android:textStyle="bold"
-                            android:layout_marginLeft="5dp" />
+                            android:layout_marginLeft="5dp"
+                            tools:ignore="RtlHardcoded" />
 
                     </RelativeLayout>
                 </LinearLayout>
@@ -329,14 +345,16 @@
                     android:clickable="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="10dp"
+                    android:focusable="true">
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="100dp"
                         android:background="@drawable/my_gradient_drawable_"
                         android:minHeight="100dp"
-                        android:padding="10dp">
+                        android:padding="10dp"
+                        tools:ignore="UselessParent">
 
                         <ImageView
                             android:layout_width="30dp"
@@ -347,7 +365,8 @@
                             android:padding="3dp"
                             app:srcCompat="@drawable/coupls"
                             android:layout_alignParentRight="true"
-                            android:layout_marginRight="3dp" />
+                            android:layout_marginRight="3dp"
+                            tools:ignore="ContentDescription,RtlHardcoded" />
 
                         <TextView
                             android:layout_width="100dp"
@@ -359,13 +378,12 @@
                             android:textColor="@color/white"
                             android:textSize="15sp"
                             android:textStyle="bold"
-                            android:layout_marginLeft="5dp" />
+                            android:layout_marginLeft="5dp"
+                            tools:ignore="RtlHardcoded" />
 
                     </RelativeLayout>
                 </LinearLayout>
-
             </LinearLayout>
-
         </LinearLayout>
 
         <!--Slide Options-->
@@ -380,7 +398,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="left">
+                android:gravity="left"
+                tools:ignore="RtlHardcoded,UseCompoundDrawables">
 
                 <ImageView
                     android:layout_width="10dp"
@@ -389,24 +408,27 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:alpha="0.8"
-                    app:srcCompat="@drawable/circle_blue_fil" />
+                    app:srcCompat="@drawable/circle_blue_fil"
+                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:id="@+id/tv_most_popular"
                     android:clickable="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Most popular"
+                    android:text="@string/most_popular"
                     android:textColor="#4D53E0"
                     android:textSize="17sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:focusable="true" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:gravity="left">
+                android:layout_marginStart="50dp"
+                android:gravity="left"
+                tools:ignore="RtlHardcoded,UseCompoundDrawables">
 
                 <ImageView
                     android:layout_width="10dp"
@@ -415,7 +437,8 @@
                     android:layout_marginRight="10dp"
                     android:layout_gravity="center"
                     android:alpha="0.8"
-                    app:srcCompat="@drawable/circle_blue_fil" />
+                    app:srcCompat="@drawable/circle_blue_fil"
+                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:id="@+id/tv_latest"
@@ -425,10 +448,10 @@
                     android:text="@string/latest"
                     android:textColor="#4D53E0"
                     android:textSize="17sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:focusable="true" />
             </LinearLayout>
         </LinearLayout>
-
         <!--List View (Adding just one item)-->
         <RelativeLayout
             android:id="@+id/card"
@@ -451,7 +474,5 @@
                 android:layout_height="match_parent" />
 
         </RelativeLayout>
-
     </LinearLayout>
-
 </ScrollView>

@@ -12,5 +12,14 @@
     <string name="log_in">Log In</string>
     <string name="message">This App will send you an SMS message for verification and standard rates apply.. Kindly enter your phone Number</string>
     <string name="reset_pass_message">Seems like you forgot your password for Event Hub. If this is true, click below to reset your password.</string>
+    <string name="location">Nairobi</string>
+    <string name="username">Derrick Wadek</string>
+    <string name="user_title">Android Developer</string>
+    <string name="friends_number">345 friends</string>
+    <string name="greeting_banner">Hello,</string>
+    <string name="username_surname">WadeQ!</string>
+    <string name="event_type_banner">Professional events</string>
+    <string name="social_events">Social events</string>
+    <string name="most_popular">Most popular</string>
 
 </resources>
