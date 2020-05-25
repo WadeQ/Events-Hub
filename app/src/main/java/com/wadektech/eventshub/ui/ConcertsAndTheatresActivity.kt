@@ -4,12 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wadektech.eventshub.R
 import com.wadektech.eventshub.adapter.ConcertsAndTheatreAdapter
 import com.wadektech.eventshub.adapter.ConcertsAndTheatreAdapter.OnSingleConcertItemClicked
+import com.wadektech.eventshub.database.MainEventsRoomDatabase
+import com.wadektech.eventshub.repository.EventsHubRepository
+import com.wadektech.eventshub.utils.EventsHubViewModelFactory
 import com.wadektech.eventshub.viewmodels.EventsHubViewModel
 
 
@@ -27,7 +30,14 @@ class ConcertsAndTheatresActivity : AppCompatActivity(), OnSingleConcertItemClic
 
         initRecyclerview()
 
-       eventsHubViewModel = ViewModelProviders.of(this).get(EventsHubViewModel::class.java)
+        cAdapter = ConcertsAndTheatreAdapter(this)
+        mRecycler.adapter = cAdapter
+
+        val db = MainEventsRoomDatabase(this)
+        val repo = EventsHubRepository(db)
+        val factory = EventsHubViewModelFactory(repo)
+
+      eventsHubViewModel = ViewModelProvider(this, factory).get(EventsHubViewModel::class.java)
         eventsHubViewModel.getAllConcertsFromRoom().observe(this, Observer {
             cAdapter.submitList(it)
         })
@@ -46,7 +56,5 @@ class ConcertsAndTheatresActivity : AppCompatActivity(), OnSingleConcertItemClic
         mRecycler.setHasFixedSize(true)
         mLayout = LinearLayoutManager(this)
         mRecycler.layoutManager = mLayout
-        cAdapter = ConcertsAndTheatreAdapter(this)
-        mRecycler.adapter = cAdapter
     }
 }

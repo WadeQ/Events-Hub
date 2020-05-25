@@ -3,12 +3,15 @@ package com.wadektech.eventshub.ui
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wadektech.eventshub.R
 import com.wadektech.eventshub.adapter.SocialEventsAdapter
 import com.wadektech.eventshub.adapter.SocialEventsAdapter.OnSingleSocialEventClicked
+import com.wadektech.eventshub.database.MainEventsRoomDatabase
+import com.wadektech.eventshub.repository.EventsHubRepository
+import com.wadektech.eventshub.utils.EventsHubViewModelFactory
 import com.wadektech.eventshub.viewmodels.EventsHubViewModel
 import java.util.*
 
@@ -26,7 +29,14 @@ class SocialEventsActivity : AppCompatActivity(), OnSingleSocialEventClicked {
 
         initRecyclerview()
 
-        eventsHubViewModel = ViewModelProviders.of(this).get(EventsHubViewModel::class.java)
+        val db = MainEventsRoomDatabase(this)
+        val repo = EventsHubRepository(db)
+        val factory = EventsHubViewModelFactory(repo)
+
+        socialEventsAdapter = SocialEventsAdapter(this)
+        mRecycler.adapter = socialEventsAdapter
+
+        eventsHubViewModel = ViewModelProvider(this, factory).get(EventsHubViewModel::class.java)
         eventsHubViewModel.getAllSocialEvents().observe(this, androidx.lifecycle.Observer {
             socialEventsAdapter.submitList(it)
         })
@@ -47,7 +57,5 @@ class SocialEventsActivity : AppCompatActivity(), OnSingleSocialEventClicked {
         mRecycler.setHasFixedSize(true)
         mLayout = LinearLayoutManager(this)
         mRecycler.layoutManager = mLayout
-        socialEventsAdapter = SocialEventsAdapter(this)
-        mRecycler.adapter = socialEventsAdapter
     }
 }

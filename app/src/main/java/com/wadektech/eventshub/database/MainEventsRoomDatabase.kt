@@ -17,8 +17,8 @@ abstract class MainEventsRoomDatabase : RoomDatabase() {
     abstract fun friendsEventDao(): FriendsEventDao
 
     companion object {
-        private var rInstance: MainEventsRoomDatabase? = null
-        private val LOCK = Any()
+        var rInstance: MainEventsRoomDatabase? = null
+        val LOCK = Any()
 
         operator fun invoke(context: Context) = rInstance ?: synchronized(LOCK){
             rInstance  ?: getInstance(context.applicationContext).also {

@@ -22,7 +22,8 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:padding="6dp"
-            android:src="@drawable/backbtn" />
+            app:srcCompat="@drawable/backbtn"
+            tools:ignore="ContentDescription" />
 
         <Space
             android:layout_width="wrap_content"
@@ -32,7 +33,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Event Info"
+            android:text="@string/event_info"
             android:textColor="#424242"
             android:textSize="17sp" />
 
@@ -44,9 +45,9 @@
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_centerInParent="true"
             android:padding="6dp"
-            android:src="@drawable/ic_more_vert_black_24dp" />
+            app:srcCompat="@drawable/ic_more_vert_black_24dp"
+            tools:ignore="ContentDescription" />
 
 
     </LinearLayout>
@@ -60,7 +61,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <!--List View (Adding just one item)-->
@@ -73,7 +74,8 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/my_gradient_drawable3"
                 android:orientation="vertical"
-                android:transitionName="card">
+                android:transitionName="card"
+                tools:targetApi="lollipop">
 
                 <!--title and desc-->
                 <LinearLayout
@@ -91,7 +93,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="15dp"
-                        android:text="Android DevFest 2020"
+                        android:text="@string/event_title"
                         android:textColor="@color/white"
                         android:textSize="28sp"
                         android:textStyle="bold"
@@ -104,7 +106,8 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="5dp"
                         android:gravity="center_vertical"
-                        android:layout_marginLeft="10dp">
+                        android:layout_marginLeft="10dp"
+                        tools:ignore="RtlHardcoded">
 
                         <TextView
                             android:id="@+id/desctv"
@@ -122,12 +125,13 @@
                             android:layout_marginRight="10dp"
                             android:alpha="0.6"
                             android:src="@drawable/circle_white_fil"
-                            android:visibility="gone" />
+                            android:visibility="gone"
+                            tools:ignore="ContentDescription" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="By Google"
+                            android:text="@string/by_google"
                             android:textColor="@color/white"
                             android:textSize="14sp"
                             android:visibility="gone" />
@@ -152,12 +156,13 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="5dp"
                         android:gravity="center_vertical"
-                        android:layout_marginLeft="10dp">
+                        android:layout_marginLeft="10dp"
+                        tools:ignore="RtlHardcoded">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Data"
+                            android:text="@string/event_date"
                             android:textColor="@color/white"
                             android:textSize="15sp" />
 
@@ -165,7 +170,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="25dp"
-                            android:text="23.09.19 7PM"
+                            android:text="@string/event_time"
                             android:textColor="@color/white"
                             android:textSize="15sp"
                             android:textStyle="bold"
@@ -179,12 +184,13 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="5dp"
                         android:gravity="center_vertical"
-                        android:layout_marginLeft="10dp">
+                        android:layout_marginLeft="10dp"
+                        tools:ignore="RtlHardcoded">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Location"
+                            android:text="@string/event_location_banner"
                             android:textColor="@color/white"
                             android:textSize="15sp" />
 
@@ -193,7 +199,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="25dp"
-                            android:text="PALACE stadium"
+                            android:text="@string/event_location"
                             android:textColor="@color/white"
                             android:textSize="15sp"
                             android:textStyle="bold"
@@ -209,7 +215,8 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
                     android:background="@drawable/arc_dark_blue_fil"
-                    android:layout_alignParentRight="true">
+                    android:layout_alignParentRight="true"
+                    tools:ignore="RtlHardcoded">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -218,7 +225,7 @@
                         android:layout_alignParentBottom="true"
                         android:layout_marginEnd="20dp"
                         android:layout_marginBottom="20dp"
-                        android:text="$ 90"
+                        android:text="@string/event_entry_fee"
                         android:textColor="@color/white"
                         android:textSize="17sp"
                         android:textStyle="bold"
@@ -353,7 +360,8 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="left">
+                    android:gravity="left"
+                    tools:ignore="RtlHardcoded,UseCompoundDrawables">
 
                     <ImageView
                         android:layout_width="10dp"
@@ -362,12 +370,13 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:alpha="0.8"
-                        android:src="@drawable/circle_dark_blue_fil" />
+                        android:src="@drawable/circle_dark_blue_fil"
+                        tools:ignore="ContentDescription" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="About"
+                        android:text="@string/about"
                         android:textColor="#1B1B4B"
                         android:textSize="17sp"
                         android:textStyle="bold" />
@@ -376,8 +385,9 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:gravity="left">
+                    android:layout_marginStart="20dp"
+                    android:gravity="left"
+                    tools:ignore="UseCompoundDrawables">
 
                     <ImageView
                         android:layout_width="10dp"
@@ -386,12 +396,13 @@
                         android:layout_marginRight="10dp"
                         android:alpha="0.6"
                         android:src="@drawable/circle_dark_blue_fil"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        tools:ignore="ContentDescription" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Detail"
+                        android:text="@string/detail"
                         android:textColor="@color/grey"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -399,8 +410,9 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:gravity="left">
+                    android:layout_marginStart="20dp"
+                    android:gravity="left"
+                    tools:ignore="UseCompoundDrawables">
 
                     <ImageView
                         android:layout_width="10dp"
@@ -409,7 +421,8 @@
                         android:layout_marginRight="10dp"
                         android:alpha="0.6"
                         android:src="@drawable/circle_dark_blue_fil"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        tools:ignore="ContentDescription" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -422,8 +435,9 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:gravity="left">
+                    android:layout_marginStart="20dp"
+                    android:gravity="left"
+                    tools:ignore="UseCompoundDrawables">
 
                     <ImageView
                         android:layout_width="10dp"
@@ -432,12 +446,13 @@
                         android:layout_marginRight="10dp"
                         android:alpha="0.6"
                         android:src="@drawable/circle_dark_blue_fil"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        tools:ignore="ContentDescription" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Visitors"
+                        android:text="@string/visitors"
                         android:textColor="@color/grey"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -461,7 +476,8 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:padding="5dp"
-                        android:src="@drawable/clockclr" />
+                        app:srcCompat="@drawable/clockclr"
+                        tools:ignore="ContentDescription" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -472,7 +488,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="FRI, 20 Sep 2020"
+                            android:text="@string/event_date_banner"
                             android:textColor="#1B1B4B"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -481,7 +497,7 @@
                             android:layout_width="200dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="6:00 PM - 8:30 PM"
+                            android:text="@string/event_time_duration"
                             android:textColor="@color/grey"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -496,7 +512,8 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:padding="5dp"
-                        android:src="@drawable/ic_location_on_black_24dp" />
+                        app:srcCompat="@drawable/ic_location_on_black_24dp"
+                        tools:ignore="ContentDescription" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -508,7 +525,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="FreeckySpace Art Centre"
+                            android:text="@string/event_location_baner"
                             android:textColor="#1B1B4B"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -517,7 +534,7 @@
                             android:layout_width="200dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="Fancy Avenue 23, Level 4 California, USA CA94103"
+                            android:text="@string/location_update_real"
                             android:textColor="#9096A3"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -537,12 +554,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="4 friends will go on this event"
+                    android:text="@string/event_friends_attendees"
                     android:textColor="@color/grey"
                     android:textSize="14sp" />
 
                 <Space
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
@@ -568,7 +585,8 @@
                         app:civ_border_color="@color/white"
                         app:civ_border_width="2dp"
                         android:layout_alignLeft="@+id/img1"
-                        android:layout_marginLeft="25dp" />
+                        android:layout_marginLeft="25dp"
+                        tools:ignore="RtlHardcoded" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/img3"
@@ -580,7 +598,8 @@
                         app:civ_border_color="@color/white"
                         app:civ_border_width="2dp"
                         android:layout_alignLeft="@+id/img2"
-                        android:layout_marginLeft="25dp" />
+                        android:layout_marginLeft="25dp"
+                        tools:ignore="RtlHardcoded" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/img4"
@@ -592,7 +611,8 @@
                         app:civ_border_color="@color/white"
                         app:civ_border_width="2dp"
                         android:layout_alignLeft="@+id/img3"
-                        android:layout_marginLeft="25dp" />
+                        android:layout_marginLeft="25dp"
+                        tools:ignore="RtlHardcoded" />
                 </RelativeLayout>
 
 
@@ -608,7 +628,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
                 android:paddingBottom="150dp"
-                android:text="You can easily schedule professional meetings, search for cool events, and even buy tickets for any concerts held in your city! What do you think about this application? We’d love to hear everyone!"
+                android:text="@string/event_description"
                 android:textColor="@color/grey"
                 android:textSize="14sp" />
 
@@ -647,7 +667,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="FREE"
+                    android:text="@string/free"
                     android:textColor="#1B1B4B"
                     android:textSize="17sp"
                     android:textStyle="bold" />
@@ -655,12 +675,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="with registration"
+                    android:text="@string/event_registration"
                     android:textSize="14sp" />
             </LinearLayout>
 
             <Space
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
@@ -670,11 +690,9 @@
                 android:background="@drawable/pink_button_drawable_circular"
                 android:paddingLeft="35dp"
                 android:paddingRight="35dp"
-                android:text="REGISTER"
+                android:text="@string/register"
                 android:textColor="@color/white"
                 android:textSize="17sp" />
         </LinearLayout>
-
     </LinearLayout>
-
 </RelativeLayout>

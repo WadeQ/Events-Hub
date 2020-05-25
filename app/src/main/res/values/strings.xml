@@ -21,5 +21,25 @@
     <string name="event_type_banner">Professional events</string>
     <string name="social_events">Social events</string>
     <string name="most_popular">Most popular</string>
+    <string name="event_info">Event Info</string>
+    <string name="event_title">Android DevFest 2020</string>
+    <string name="event_date">Date</string>
+    <string name="event_time">23.09.19 7PM</string>
+    <string name="by_google">By Google</string>
+    <string name="event_location_banner">Location</string>
+    <string name="event_location">PALACE stadium</string>
+    <string name="event_entry_fee">$ 90</string>
+    <string name="about">About</string>
+    <string name="detail">Detail</string>
+    <string name="visitors">Visitors</string>
+    <string name="event_date_banner">FRI, 20 Sep 2020</string>
+    <string name="event_time_duration">6:00 PM - 8:30 PM</string>
+    <string name="event_location_baner">FreeckySpace Art Centre</string>
+    <string name="location_update_real">Fancy Avenue 23, Level 4 California, USA CA94103</string>
+    <string name="event_friends_attendees">4 friends will go on this event</string>
+    <string name="event_description">You can easily schedule professional meetings, search for cool events, and even buy tickets for any concerts held in your city! What do you think about this application? We’d love to hear everyone!</string>
+    <string name="event_registration">with registration</string>
+    <string name="register">REGISTER</string>
+    <string name="free">FREE</string>
 
 </resources>

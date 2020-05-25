@@ -75,9 +75,8 @@ class LoginActivity : AppCompatActivity() {
             return;
         }
             Timber.d("we are in update UI");
-
         */
-        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         _loginButton!!.isEnabled = false
         /*
@@ -114,7 +113,6 @@ class LoginActivity : AppCompatActivity() {
         // onLoginFailed();
         new android.os.Handler().postDelayed(
                 progressDialog::dismiss, 3000);
-
  */
     }
 

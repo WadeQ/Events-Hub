@@ -4,12 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wadektech.eventshub.R
 import com.wadektech.eventshub.adapter.FriendsEventsAdapter
 import com.wadektech.eventshub.adapter.FriendsEventsAdapter.OnSingleFriendsEventItemClicked
+import com.wadektech.eventshub.database.MainEventsRoomDatabase
+import com.wadektech.eventshub.repository.EventsHubRepository
+import com.wadektech.eventshub.utils.EventsHubViewModelFactory
 import com.wadektech.eventshub.viewmodels.EventsHubViewModel
 
 class FriendsEventsActivity : AppCompatActivity(), OnSingleFriendsEventItemClicked {
@@ -25,7 +28,14 @@ class FriendsEventsActivity : AppCompatActivity(), OnSingleFriendsEventItemClick
 
         initRecyclerview()
 
-        eventsHubViewModel = ViewModelProviders.of(this).get(EventsHubViewModel::class.java)
+        fAdapter = FriendsEventsAdapter(this)
+        mRecycler.adapter = fAdapter
+
+        val db = MainEventsRoomDatabase(this)
+        val repo = EventsHubRepository(db)
+        val factory = EventsHubViewModelFactory(repo)
+
+        eventsHubViewModel = ViewModelProvider(this, factory).get(EventsHubViewModel::class.java)
         eventsHubViewModel.getAllFriendsEvents().observe(this, Observer {
             fAdapter.submitList(it)
         })
@@ -40,7 +50,5 @@ class FriendsEventsActivity : AppCompatActivity(), OnSingleFriendsEventItemClick
         mRecycler.setHasFixedSize(true)
         mLayout = LinearLayoutManager(this)
         mRecycler.layoutManager = mLayout
-        fAdapter = FriendsEventsAdapter(this)
-        mRecycler.adapter = fAdapter
     }
 }

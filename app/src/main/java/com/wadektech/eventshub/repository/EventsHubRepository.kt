@@ -1,6 +1,7 @@
 package com.wadektech.eventshub.repository
 
 import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
 import com.wadektech.eventshub.database.MainEventsRoomDatabase
 import com.wadektech.eventshub.models.*
 
@@ -28,23 +29,23 @@ class EventsHubRepository(private val database: MainEventsRoomDatabase) {
        database.friendsEventDao().saveAllFriendsEventsToRoom(saveFriendsLiveData)
     }
 
-    fun getSocialEvents() : LiveData<List<SocialEvents>>{
+    fun getSocialEvents() : DataSource.Factory<Int,SocialEvents>{
         return database.socialEventsDao().getAllSocialEvents()
     }
 
-    fun getProfessionalEvents() : LiveData<List<ProfessionalEvents>>{
+    fun getProfessionalEvents() : DataSource.Factory<Int, ProfessionalEvents>{
         return database.pofessionalEventsDao().getAllProfEventsFromRoom()
     }
 
-    fun getFriendEvent() : LiveData<List<FriendsEvents>>{
+    fun getFriendEvent() : DataSource.Factory<Int, FriendsEvents>{
         return database.friendsEventDao().getAllFriendsEvents()
     }
 
-    fun getMainEvents() : LiveData<List<MainEvents>>{
+    fun getMainEvents() : DataSource.Factory<Int ,MainEvents>{
         return database.mainEventsDao().getAllMainEventsFromRoom()
     }
 
-    fun getConcerts() : LiveData<List<Concerts>>{
+    fun getConcerts() : DataSource.Factory<Int,Concerts>{
         return database.concertsDao().getAllConcertsAndTheatres()
     }
 }

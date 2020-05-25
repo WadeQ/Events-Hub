@@ -4,13 +4,16 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wadektech.eventshub.R
 import com.wadektech.eventshub.adapter.ProfessionalEventsAdapter
 import com.wadektech.eventshub.adapter.ProfessionalEventsAdapter.OnSingleProfEventClicked
+import com.wadektech.eventshub.database.MainEventsRoomDatabase
 import com.wadektech.eventshub.models.ProfessionalEvents
+import com.wadektech.eventshub.repository.EventsHubRepository
+import com.wadektech.eventshub.utils.EventsHubViewModelFactory
 import com.wadektech.eventshub.viewmodels.EventsHubViewModel
 import java.util.*
 
@@ -28,7 +31,14 @@ class ProfessionaEventsActivity : AppCompatActivity(), OnSingleProfEventClicked 
 
         initRecyclerview()
 
-        eventsHubViewModel = ViewModelProviders.of(this).get(EventsHubViewModel::class.java)
+        mProfAdapter = ProfessionalEventsAdapter(this)
+        mRecycler.adapter = mProfAdapter
+
+        val db = MainEventsRoomDatabase(this)
+        val repo = EventsHubRepository(db)
+        val factory = EventsHubViewModelFactory(repo)
+
+        eventsHubViewModel = ViewModelProvider(this, factory).get(EventsHubViewModel::class.java)
         eventsHubViewModel.getAllProfEvents().observe(this, Observer {
             mProfAdapter.submitList(it)
         })
@@ -49,7 +59,5 @@ class ProfessionaEventsActivity : AppCompatActivity(), OnSingleProfEventClicked 
         mRecycler.setHasFixedSize(true)
         mLayout = LinearLayoutManager(this)
         mRecycler.layoutManager = mLayout
-        mProfAdapter = ProfessionalEventsAdapter(this)
-        mRecycler.adapter = mProfAdapter
     }
 }

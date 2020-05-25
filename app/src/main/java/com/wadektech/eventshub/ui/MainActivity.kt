@@ -8,7 +8,7 @@ import android.widget.ImageButton
 import android.widget.LinearLayout
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gitonway.lee.niftymodaldialogeffects.lib.Effectstype
@@ -18,9 +18,11 @@ import com.wadektech.eventshub.R
 import com.wadektech.eventshub.adapter.MainEventsAdapter
 import com.wadektech.eventshub.adapter.MainEventsAdapter.OnSingleEventCardClicked
 import com.wadektech.eventshub.auth.LoginActivity
+import com.wadektech.eventshub.database.MainEventsRoomDatabase
 import com.wadektech.eventshub.models.MainEvents
 import com.wadektech.eventshub.repository.EventsHubRepository
 import com.wadektech.eventshub.ui.ConcertsAndTheatresActivity
+import com.wadektech.eventshub.utils.EventsHubViewModelFactory
 import com.wadektech.eventshub.viewmodels.EventsHubViewModel
 import java.util.*
 
@@ -42,6 +44,22 @@ class MainActivity : AppCompatActivity(), OnSingleEventCardClicked {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        mRecycler = findViewById(R.id.rv_event)
+        mMenu = findViewById(R.id.ib_menu_item)
+        mProfile = findViewById(R.id.ib_edit_profile)
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance()
+        mProfEvents = findViewById(R.id.prof_event)
+        val layout = findViewById<LinearLayout>(R.id.social_events)
+        mConcerts = findViewById(R.id.concerts_events)
+        mFriends = findViewById(R.id.friends_events)
+
+        val db = MainEventsRoomDatabase(this)
+        val repo = EventsHubRepository(db)
+        val factory = EventsHubViewModelFactory(repo)
+
+        eventsHubViewModel = EventsHubViewModel(repo)
+
         eventsHubViewModel.allMainEventsRoom()
         eventsHubViewModel.allProfEvents()
         eventsHubViewModel.allSocialEvents()
@@ -52,16 +70,6 @@ class MainActivity : AppCompatActivity(), OnSingleEventCardClicked {
 
         materialDesignAnimatedDialog = NiftyDialogBuilder.getInstance(this)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-
-        mRecycler = findViewById(R.id.rv_event)
-        mMenu = findViewById(R.id.ib_menu_item)
-        mProfile = findViewById(R.id.ib_edit_profile)
-        // Initialize Firebase Auth
-        mAuth = FirebaseAuth.getInstance()
-        mProfEvents = findViewById(R.id.prof_event)
-        val layout = findViewById<LinearLayout>(R.id.social_events)
-        mConcerts = findViewById(R.id.concerts_events)
-        mFriends = findViewById(R.id.friends_events)
 
         layout.setOnClickListener {
             val intent = Intent(this@MainActivity, SocialEventsActivity::class.java)
@@ -87,7 +95,7 @@ class MainActivity : AppCompatActivity(), OnSingleEventCardClicked {
             startActivity(intent)
         })
 
-       eventsHubViewModel = ViewModelProviders.of(this).get(EventsHubViewModel::class.java)
+       eventsHubViewModel = ViewModelProvider(this,factory).get(EventsHubViewModel::class.java)
         eventsHubViewModel.getAllMainEvents().observe(this, androidx.lifecycle.Observer {
             mainEventsAdapter.submitList(it)
         })
