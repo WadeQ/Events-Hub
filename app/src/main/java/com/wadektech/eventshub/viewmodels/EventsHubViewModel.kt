@@ -17,7 +17,7 @@ class EventsHubViewModel(private val repository: EventsHubRepository) : ViewMode
     var socialEvents: MutableList<SocialEvents> = ArrayList()
     var concertsAndTheatres: MutableList<Concerts> = ArrayList()
     var friendsEvents: MutableList<FriendsEvents> = ArrayList()
-    private var mainEvents: MutableList<MainEvents> = ArrayList()
+    var mainEvents: MutableList<MainEvents> = ArrayList()
 
     private var concertsPagedList: LiveData<PagedList<Concerts>>
     private var friendsPagedList: LiveData<PagedList<FriendsEvents>>
@@ -44,18 +44,17 @@ class EventsHubViewModel(private val repository: EventsHubRepository) : ViewMode
                 50)
         mainPagedList = mainPagedListBuilder.build()
 
-        //main events
+        //professional events
         val factory4 : DataSource.Factory<Int, ProfessionalEvents> = repository.getProfessionalEvents()
         val professionalPagedListBuilder: LivePagedListBuilder<Int, ProfessionalEvents> = LivePagedListBuilder<Int, ProfessionalEvents>(factory4,
                 50)
         professionalPagedList = professionalPagedListBuilder.build()
 
-        //main events
+        //social events
         val factory5 : DataSource.Factory<Int, SocialEvents> = repository.getSocialEvents()
         val socialPagedListBuilder: LivePagedListBuilder<Int, SocialEvents> = LivePagedListBuilder<Int, SocialEvents>(factory5,
                 50)
         socialPagedList = socialPagedListBuilder.build()
-
     }
 
     private fun saveMainEvents(mainLiveData: MutableList<MainEvents>) = viewModelScope.launch {
@@ -97,8 +96,6 @@ class EventsHubViewModel(private val repository: EventsHubRepository) : ViewMode
     fun getAllFriendsEvents(): LiveData<PagedList<FriendsEvents>> {
         return friendsPagedList
     }
-
-
 
     fun allProfEvents() : MutableLiveData<List<ProfessionalEvents>> {
         professionalEvents.add(ProfessionalEvents("Android DevFest Nairobi", "Meetup for Android Developers", 23 - 9 - 2019, "Ihub Westlands", 200))

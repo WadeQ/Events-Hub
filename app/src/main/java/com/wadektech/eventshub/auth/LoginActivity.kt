@@ -78,7 +78,7 @@ class LoginActivity : AppCompatActivity() {
         */
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
-        _loginButton!!.isEnabled = false
+        //_loginButton!!.isEnabled = false
         /*
         final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this);
         progressDialog.setIndeterminate(true);

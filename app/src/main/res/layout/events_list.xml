@@ -34,11 +34,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="15dp"
-                android:text="Flutter Dev Meetup"
+                android:text="@string/event_title_banner"
                 android:textColor="@color/white"
                 android:textSize="28sp"
                 android:textStyle="bold"
-                android:layout_marginLeft="10dp" />
+                android:layout_marginLeft="10dp"
+                tools:ignore="RtlHardcoded" />
 
 
             <LinearLayout
@@ -47,7 +48,8 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
                 android:gravity="center_vertical"
-                android:layout_marginLeft="10dp">
+                android:layout_marginLeft="10dp"
+                tools:ignore="RtlHardcoded">
 
                 <TextView
                     android:id="@+id/tv_title_desc"
@@ -64,12 +66,13 @@
                     android:layout_marginRight="10dp"
                     android:alpha="0.6"
                     android:visibility="gone"
-                    android:src="@drawable/circle_white_fil" />
+                    android:src="@drawable/circle_white_fil"
+                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="By Google"
+                    android:text="@string/by_google"
                     android:visibility="gone"
                     android:textColor="@color/white"
                     android:textSize="14sp" />

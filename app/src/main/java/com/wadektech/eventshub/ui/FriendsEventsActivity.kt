@@ -36,9 +36,9 @@ class FriendsEventsActivity : AppCompatActivity(), OnSingleFriendsEventItemClick
         val factory = EventsHubViewModelFactory(repo)
 
         eventsHubViewModel = ViewModelProvider(this, factory).get(EventsHubViewModel::class.java)
-        eventsHubViewModel.getAllFriendsEvents().observe(this, Observer {
-            fAdapter.submitList(it)
-        })
+       eventsHubViewModel.getAllFriendsEvents().observe(this, Observer {
+           fAdapter.submitList(it)
+       })
     }
 
     override fun singleFriendsEventsItemClicked(position: Int) {

@@ -8,7 +8,9 @@ import android.widget.ImageButton
 import android.widget.LinearLayout
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gitonway.lee.niftymodaldialogeffects.lib.Effectstype
@@ -19,12 +21,10 @@ import com.wadektech.eventshub.adapter.MainEventsAdapter
 import com.wadektech.eventshub.adapter.MainEventsAdapter.OnSingleEventCardClicked
 import com.wadektech.eventshub.auth.LoginActivity
 import com.wadektech.eventshub.database.MainEventsRoomDatabase
-import com.wadektech.eventshub.models.MainEvents
 import com.wadektech.eventshub.repository.EventsHubRepository
-import com.wadektech.eventshub.ui.ConcertsAndTheatresActivity
 import com.wadektech.eventshub.utils.EventsHubViewModelFactory
 import com.wadektech.eventshub.viewmodels.EventsHubViewModel
-import java.util.*
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity(), OnSingleEventCardClicked {
     private lateinit var mRecycler: RecyclerView
@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity(), OnSingleEventCardClicked {
         mRecycler = findViewById(R.id.rv_event)
         mMenu = findViewById(R.id.ib_menu_item)
         mProfile = findViewById(R.id.ib_edit_profile)
+
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance()
         mProfEvents = findViewById(R.id.prof_event)
@@ -59,7 +60,6 @@ class MainActivity : AppCompatActivity(), OnSingleEventCardClicked {
         val factory = EventsHubViewModelFactory(repo)
 
         eventsHubViewModel = EventsHubViewModel(repo)
-
         eventsHubViewModel.allMainEventsRoom()
         eventsHubViewModel.allProfEvents()
         eventsHubViewModel.allSocialEvents()
@@ -67,6 +67,9 @@ class MainActivity : AppCompatActivity(), OnSingleEventCardClicked {
         eventsHubViewModel.allFriendEventsRoom()
 
         initRecyclerview()
+
+        mainEventsAdapter = MainEventsAdapter(this)
+        mRecycler.adapter = mainEventsAdapter
 
         materialDesignAnimatedDialog = NiftyDialogBuilder.getInstance(this)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
@@ -81,7 +84,7 @@ class MainActivity : AppCompatActivity(), OnSingleEventCardClicked {
         })
         mMenu.setOnClickListener(View.OnClickListener {
             mAuth.signOut()
-            val intent = Intent(applicationContext, LoginActivity::class.java)
+            val intent = Intent(applicationContext, SettingsActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
         })
@@ -96,9 +99,10 @@ class MainActivity : AppCompatActivity(), OnSingleEventCardClicked {
         })
 
        eventsHubViewModel = ViewModelProvider(this,factory).get(EventsHubViewModel::class.java)
-        eventsHubViewModel.getAllMainEvents().observe(this, androidx.lifecycle.Observer {
-            mainEventsAdapter.submitList(it)
-        })
+       eventsHubViewModel.getAllMainEvents().observe(this, Observer {
+           Timber.d("getAllMainEvents() : ${it.size}")
+           mainEventsAdapter.submitList(it)
+       })
 
         mProfEvents.setOnClickListener(View.OnClickListener {
             val intent = Intent(this@MainActivity, ProfessionaEventsActivity::class.java)
@@ -129,9 +133,9 @@ class MainActivity : AppCompatActivity(), OnSingleEventCardClicked {
                 .withButton2Text("Cancel")
                 .withDuration(700)
                 .withEffect(Effectstype.Fall)
-                .setButton1Click { v: View? -> logOutUser() }
-                .setButton2Click { v: View? -> materialDesignAnimatedDialog!!.dismiss() }
-        materialDesignAnimatedDialog!!.show()
+                .setButton1Click { logOutUser() }
+                .setButton2Click { materialDesignAnimatedDialog.dismiss() }
+        materialDesignAnimatedDialog.show()
     }
 
     override fun onStart() {
@@ -143,7 +147,5 @@ class MainActivity : AppCompatActivity(), OnSingleEventCardClicked {
         mRecycler.setHasFixedSize(true)
         mLayout = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,true)
         mRecycler.layoutManager = mLayout
-        mainEventsAdapter = MainEventsAdapter(this)
-        mRecycler.adapter = mainEventsAdapter
     }
 }

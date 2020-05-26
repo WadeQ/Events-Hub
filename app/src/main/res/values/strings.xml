@@ -3,7 +3,7 @@
     <string name="concerts_theater" tools:ignore="ExtraTranslation"><![CDATA[Concerts & Theater]]></string>
     <string name="ev_wth_friends">Events with friends</string>
     <string name="friends_go">Friends go</string>
-    <string name="latest">Most recent events</string>
+    <string name="latest">Most recent</string>
     <string name="map_location">Map Location</string>
     <string name="meetup_for_android_developer_s">Meetup for Android Developer\'s</string>
     <string name="new_account">New Account</string>
@@ -25,7 +25,6 @@
     <string name="event_title">Android DevFest 2020</string>
     <string name="event_date">Date</string>
     <string name="event_time">23.09.19 7PM</string>
-    <string name="by_google">By Google</string>
     <string name="event_location_banner">Location</string>
     <string name="event_location">PALACE stadium</string>
     <string name="event_entry_fee">$ 90</string>
@@ -41,5 +40,22 @@
     <string name="event_registration">with registration</string>
     <string name="register">REGISTER</string>
     <string name="free">FREE</string>
+    <string name="by_google">By Google</string>
+    <string name="event_title_banner">Flutter Dev Meetup</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">UI Preference</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Dark Theme</string>
+    <string name="attachment_title">Light Theme</string>
+    <string name="dark_theme_summary">Toggle for dark theme in Event Hub.</string>
+    <string name="light_theme_summary">Toggle for light theme in Event Hub.</string>
 
 </resources>

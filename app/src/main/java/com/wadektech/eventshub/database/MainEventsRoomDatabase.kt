@@ -8,7 +8,7 @@ import com.wadektech.eventshub.models.*
 import timber.log.Timber
 
 @Database(entities = [MainEvents::class, ProfessionalEvents::class, SocialEvents::class,
-    Concerts::class, FriendsEvents::class], version = 10, exportSchema = false)
+    Concerts::class, FriendsEvents::class], version = 1, exportSchema = false)
 abstract class MainEventsRoomDatabase : RoomDatabase() {
     abstract fun mainEventsDao(): MainEventsDao
     abstract fun pofessionalEventsDao(): PofessionalEventsDao

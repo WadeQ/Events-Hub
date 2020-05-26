@@ -4,6 +4,7 @@
     package="com.wadektech.eventshub">
 
     <application
+        android:name=".app.EventsHubApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <activity
+            android:name=".ui.SettingsActivity"
+            android:label="@string/title_activity_settings"></activity>
         <activity android:name=".ui.FriendsEventsActivity" />
         <activity android:name=".ui.ConcertsAndTheatresActivity" />
         <activity android:name=".ui.SocialEventsActivity" />

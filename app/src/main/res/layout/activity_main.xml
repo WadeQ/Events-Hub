@@ -399,6 +399,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="left"
+                android:layout_weight="1"
                 tools:ignore="RtlHardcoded,UseCompoundDrawables">
 
                 <ImageView
@@ -426,8 +427,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
                 android:gravity="left"
+                android:layout_weight="1"
                 tools:ignore="RtlHardcoded,UseCompoundDrawables">
 
                 <ImageView
@@ -469,10 +470,10 @@
                 android:scrollbarThumbHorizontal="@drawable/scrollbar"
                 android:fadeScrollbars="false"
                 android:scrollbarSize="5dp"
+                tools:listitem="@layout/events_list"
                 android:isScrollContainer="true"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
-
         </RelativeLayout>
     </LinearLayout>
 </ScrollView>
