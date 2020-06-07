@@ -4,18 +4,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.wadektech.eventshub.R
+import com.wadektech.eventshub.databinding.ConcertsEventsListBinding
+
 import com.wadektech.eventshub.models.Concerts
 
 class ConcertsAndTheatreAdapter(var singleConcertItemClicked: OnSingleConcertItemClicked) :
-        ListAdapter<Concerts, ConcertsAndTheatreAdapter.ViewHolder>(ConcertsDiffUtil()) {
+        PagedListAdapter<Concerts, ConcertsAndTheatreAdapter.ViewHolder>(ConcertsDiffUtil()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.events_list, parent, false)
-        return ViewHolder(view)
+        return ViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -25,22 +27,25 @@ class ConcertsAndTheatreAdapter(var singleConcertItemClicked: OnSingleConcertIte
         }
     }
 
-    inner class ViewHolder(itemView: View) :
-            RecyclerView.ViewHolder(itemView) {
-        private val eventTitle : TextView = itemView.findViewById(R.id.tv_event_title)
-        private val shortDescription : TextView = itemView.findViewById(R.id.tv_title_desc)
-        private val date : TextView = itemView.findViewById(R.id.tv_event_date)
-        private val location : TextView = itemView.findViewById(R.id.tv_event_location)
-        private val entryFees : TextView = itemView.findViewById(R.id.tv_event_fees)
+    class ViewHolder private constructor(val binding: ConcertsEventsListBinding) :
+            RecyclerView.ViewHolder(binding.root) {
 
         fun bind(concerts: Concerts, singleConcertItemClicked: OnSingleConcertItemClicked){
-            eventTitle.text = concerts.title
-            shortDescription.text = concerts.shortDesc
-            date.text = concerts.date.toString()
-            location.text = concerts.location
-            entryFees.text = concerts.entryFees.toString()
+            binding.tvEventTitle.text = concerts.title
+            binding.tvTitleDesc.text = concerts.shortDesc
+            binding.tvEventDate.text = concerts.date.toString()
+            binding.tvEventLocation.text = concerts.location
+            binding.tvEventFees.text = concerts.entryFees.toString()
+
             itemView.setOnClickListener {
                 singleConcertItemClicked.onSingleConcertItemClicked(adapterPosition)
+            }
+        }
+        companion object {
+            fun from(parent: ViewGroup): ViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = ConcertsEventsListBinding.inflate(layoutInflater, parent, false)
+                return ViewHolder(binding)
             }
         }
     }

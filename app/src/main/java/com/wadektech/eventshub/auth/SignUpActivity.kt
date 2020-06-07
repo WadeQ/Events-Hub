@@ -297,7 +297,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     fun onSignUpSuccess() {
-        _signupButton!!.isEnabled = true
+        _signupButton.isEnabled = true
         setResult(Activity.RESULT_OK, null)
         val intent = Intent(this@SignUpActivity, MainActivity::class.java)
         startActivity(intent)
@@ -306,32 +306,32 @@ class SignUpActivity : AppCompatActivity() {
 
     fun onSignUpFailed() {
         //ToastKt.toast(getApplicationContext(),"Login failed");
-        _signupButton!!.isEnabled = true
+        _signupButton.isEnabled = true
     }
 
     fun validate(): Boolean {
         var valid = true
-        val name = _nameText!!.text.toString()
-        val email = _emailText!!.text.toString()
-        val password = _passwordText!!.text.toString()
+        val name = _nameText.text.toString()
+        val email = _emailText.text.toString()
+        val password = _passwordText.text.toString()
         if (name.isEmpty() || name.length < 3) {
-            _nameText!!.error = "at least 3 characters"
+            _nameText.error = "at least 3 characters"
             valid = false
         } else {
-            _nameText!!.error = null
+            _nameText.error = null
         }
         if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            _emailText!!.error = "enter a valid email address"
-            _emailText!!.isFocusable = true
+            _emailText.error = "enter a valid email address"
+            _emailText.isFocusable = true
             valid = false
         } else {
-            _emailText!!.error = null
+            _emailText.error = null
         }
         if (password.isEmpty() || password.length < 4 || password.length > 10) {
-            _passwordText!!.error = "between 4 and 10 alphanumeric characters"
+            _passwordText.error = "between 4 and 10 alphanumeric characters"
             valid = false
         } else {
-            _passwordText!!.error = null
+            _passwordText.error = null
         }
         return valid
     }

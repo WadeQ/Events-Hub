@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="vertical"
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="concerts"
+            type="com.wadektech.eventshub.models.Concerts" />
+    </data>
+<LinearLayout
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="250dp"
     android:background="@color/white">
@@ -174,3 +180,4 @@
         </RelativeLayout>
     </RelativeLayout>
 </LinearLayout>
+</layout>

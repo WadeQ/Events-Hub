@@ -470,7 +470,7 @@
                 android:scrollbarThumbHorizontal="@drawable/scrollbar"
                 android:fadeScrollbars="false"
                 android:scrollbarSize="5dp"
-                tools:listitem="@layout/events_list"
+                tools:listitem="@layout/concerts_events_list"
                 android:isScrollContainer="true"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
