@@ -37,7 +37,7 @@ class SocialEventsActivity : AppCompatActivity(), OnSingleSocialEventClicked {
         mRecycler.adapter = socialEventsAdapter
 
         eventsHubViewModel = ViewModelProvider(this, factory).get(EventsHubViewModel::class.java)
-        eventsHubViewModel.getAllSocialEvents().observe(this, androidx.lifecycle.Observer {
+        eventsHubViewModel.getAllSocialEvents.observe(this, androidx.lifecycle.Observer {
             socialEventsAdapter.submitList(it)
         })
     }

@@ -39,7 +39,7 @@ class ProfessionaEventsActivity : AppCompatActivity(), OnSingleProfEventClicked 
         val factory = EventsHubViewModelFactory(repo)
 
         eventsHubViewModel = ViewModelProvider(this, factory).get(EventsHubViewModel::class.java)
-        eventsHubViewModel.getAllProfEvents().observe(this, Observer {
+        eventsHubViewModel.getAllProfEvents.observe(this, Observer {
             mProfAdapter.submitList(it)
         })
     }

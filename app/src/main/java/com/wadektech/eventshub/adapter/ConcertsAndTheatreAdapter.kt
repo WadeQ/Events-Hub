@@ -31,11 +31,8 @@ class ConcertsAndTheatreAdapter(var singleConcertItemClicked: OnSingleConcertIte
             RecyclerView.ViewHolder(binding.root) {
 
         fun bind(concerts: Concerts, singleConcertItemClicked: OnSingleConcertItemClicked){
-            binding.tvEventTitle.text = concerts.title
-            binding.tvTitleDesc.text = concerts.shortDesc
-            binding.tvEventDate.text = concerts.date.toString()
-            binding.tvEventLocation.text = concerts.location
-            binding.tvEventFees.text = concerts.entryFees.toString()
+            binding.concerts = concerts
+            binding.executePendingBindings()
 
             itemView.setOnClickListener {
                 singleConcertItemClicked.onSingleConcertItemClicked(adapterPosition)

@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity(), OnSingleEventCardClicked {
         })
 
        eventsHubViewModel = ViewModelProvider(this,factory).get(EventsHubViewModel::class.java)
-       eventsHubViewModel.getAllMainEvents().observe(this, Observer {
+       eventsHubViewModel.getAllMainEvents.observe(this, Observer {
            Timber.d("getAllMainEvents() : ${it.size}")
            mainEventsAdapter.submitList(it)
        })

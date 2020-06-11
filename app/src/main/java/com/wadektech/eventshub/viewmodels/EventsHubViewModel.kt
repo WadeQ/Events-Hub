@@ -8,8 +8,13 @@ import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.wadektech.eventshub.models.*
+import com.wadektech.eventshub.network.EventsApi
 import com.wadektech.eventshub.repository.EventsHubRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import java.util.ArrayList
 
 class EventsHubViewModel(private val repository: EventsHubRepository) : ViewModel() {
@@ -19,42 +24,65 @@ class EventsHubViewModel(private val repository: EventsHubRepository) : ViewMode
     var friendsEvents: MutableList<FriendsEvents> = ArrayList()
     var mainEvents: MutableList<MainEvents> = ArrayList()
 
-    private var concertsPagedList: LiveData<PagedList<Concerts>>
-    private var friendsPagedList: LiveData<PagedList<FriendsEvents>>
-    private var mainPagedList: LiveData<PagedList<MainEvents>>
-    private var professionalPagedList: LiveData<PagedList<ProfessionalEvents>>
-    private var socialPagedList: LiveData<PagedList<SocialEvents>>
+    private var _concertsPagedList: LiveData<PagedList<Concerts>>
+    private var _friendsPagedList: LiveData<PagedList<FriendsEvents>>
+    private var _mainPagedList: LiveData<PagedList<MainEvents>>
+    private var _professionalPagedList: LiveData<PagedList<ProfessionalEvents>>
+    private var _socialPagedList: LiveData<PagedList<SocialEvents>>
+
+    //internal mutable livedata to store most recent response
+    private val _response = MutableLiveData<String>()
+    //external livedata to store response
+    val response :LiveData<String>
+    get() = _response
+
+    private var _eventsJob = Job()
+    private val _coroutineScope = CoroutineScope(_eventsJob + Dispatchers.Main)
+
+    private fun getAllMainEventsFromApi(){
+        _coroutineScope.launch {
+            var getEventsDeferred = EventsApi.retrofitService.getAllEvents()
+            try {
+                var eventsList = getEventsDeferred.await()
+                _response.value = "Sucessfully retrieved ${eventsList.size}"
+                Timber.d("Results are ${eventsList.size}")
+            } catch (t :Throwable){
+                Timber.d("Failure due to ${t.message}")
+            }
+        }
+    }
 
     init {
+        getAllMainEventsFromApi()
          //concerts
         val factory : DataSource.Factory<Int, Concerts> = repository.getConcerts()
         val pagedListBuilder: LivePagedListBuilder<Int, Concerts> = LivePagedListBuilder<Int, Concerts>(factory,
                 50)
-        concertsPagedList = pagedListBuilder.build()
+        _concertsPagedList = pagedListBuilder.build()
 
         //friends
         val factory2 : DataSource.Factory<Int, FriendsEvents> = repository.getFriendEvent()
         val friendsPagedListBuilder: LivePagedListBuilder<Int, FriendsEvents> = LivePagedListBuilder<Int, FriendsEvents>(factory2,
                 50)
-        friendsPagedList = friendsPagedListBuilder.build()
+        _friendsPagedList = friendsPagedListBuilder.build()
 
         //main events
         val factory3 : DataSource.Factory<Int, MainEvents> = repository.getMainEvents()
         val mainPagedListBuilder: LivePagedListBuilder<Int, MainEvents> = LivePagedListBuilder<Int, MainEvents>(factory3,
                 50)
-        mainPagedList = mainPagedListBuilder.build()
+        _mainPagedList = mainPagedListBuilder.build()
 
         //professional events
         val factory4 : DataSource.Factory<Int, ProfessionalEvents> = repository.getProfessionalEvents()
         val professionalPagedListBuilder: LivePagedListBuilder<Int, ProfessionalEvents> = LivePagedListBuilder<Int, ProfessionalEvents>(factory4,
                 50)
-        professionalPagedList = professionalPagedListBuilder.build()
+        _professionalPagedList = professionalPagedListBuilder.build()
 
         //social events
         val factory5 : DataSource.Factory<Int, SocialEvents> = repository.getSocialEvents()
         val socialPagedListBuilder: LivePagedListBuilder<Int, SocialEvents> = LivePagedListBuilder<Int, SocialEvents>(factory5,
                 50)
-        socialPagedList = socialPagedListBuilder.build()
+        _socialPagedList = socialPagedListBuilder.build()
     }
 
     private fun saveMainEvents(mainLiveData: MutableList<MainEvents>) = viewModelScope.launch {
@@ -77,25 +105,20 @@ class EventsHubViewModel(private val repository: EventsHubRepository) : ViewMode
         repository.saveSocialEventsToRoom(socialLiveData)
     }
 
-    fun getAllConcertsFromRoom(): LiveData<PagedList<Concerts>> {
-        return concertsPagedList
-    }
+    val getAllConcertsFromRoom : LiveData<PagedList<Concerts>>
+        get() =  _concertsPagedList
 
-    fun getAllMainEvents(): LiveData<PagedList<MainEvents>> {
-        return mainPagedList
-    }
+    val getAllMainEvents : LiveData<PagedList<MainEvents>>
+        get() =  _mainPagedList
 
-    fun getAllProfEvents(): LiveData<PagedList<ProfessionalEvents>> {
-        return professionalPagedList
-    }
+    val getAllProfEvents : LiveData<PagedList<ProfessionalEvents>>
+        get() =  _professionalPagedList
 
-    fun getAllSocialEvents(): LiveData<PagedList<SocialEvents>> {
-        return socialPagedList
-    }
+    val getAllSocialEvents : LiveData<PagedList<SocialEvents>>
+        get() =  _socialPagedList
 
-    fun getAllFriendsEvents(): LiveData<PagedList<FriendsEvents>> {
-        return friendsPagedList
-    }
+    val getAllFriendsEvents : LiveData<PagedList<FriendsEvents>>
+        get() =  _friendsPagedList
 
     fun allProfEvents() : MutableLiveData<List<ProfessionalEvents>> {
         professionalEvents.add(ProfessionalEvents("Android DevFest Nairobi", "Meetup for Android Developers", 23 - 9 - 2019, "Ihub Westlands", 200))

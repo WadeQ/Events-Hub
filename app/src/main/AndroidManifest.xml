@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.wadektech.eventshub">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".app.EventsHubApp"
         android:allowBackup="true"

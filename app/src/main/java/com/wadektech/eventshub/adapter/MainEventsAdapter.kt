@@ -39,6 +39,7 @@ class MainEventsAdapter(var eventCardClicked: OnSingleEventCardClicked) :
                 cardClicked.singleEventCardClicked(adapterPosition)
             }
         }
+
         companion object {
             fun from(parent: ViewGroup): MainEventsViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
@@ -56,7 +57,6 @@ class MainEventsAdapter(var eventCardClicked: OnSingleEventCardClicked) :
         override fun areItemsTheSame(oldItem: MainEvents, newItem: MainEvents): Boolean {
             return oldItem.id == newItem.id
         }
-
         override fun areContentsTheSame(oldItem: MainEvents, newItem: MainEvents): Boolean {
            return oldItem.id == newItem.id
         }
